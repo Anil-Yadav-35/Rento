@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Rento's palette: deep evergreen, muted sage and warm neutral surfaces. */
+@theme {
+  --color-indigo-50: #edf5f2;
+  --color-indigo-100: #d7e8e1;
+  --color-indigo-200: #b7d3c8;
+  --color-indigo-300: #8db8a8;
+  --color-indigo-400: #609987;
+  --color-indigo-500: #397a68;
+  --color-indigo-600: #286454;
+  --color-indigo-700: #1f5145;
+  --color-indigo-800: #1b4139;
+  --color-indigo-900: #173630;
+  --color-indigo-950: #0d211d;
+  --color-violet-600: #286454;
+  --color-violet-700: #1f5145;
+  --color-amber-50: #fbf5e9;
+  --color-amber-100: #f5e8cb;
+  --color-amber-400: #c89a4b;
+  --color-amber-500: #a9782e;
+  --color-amber-600: #8c6228;
+}
+
+:root {
+  color-scheme: light;
+  font-family: Inter, "Aptos", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f7f7f3;
+  color: #202a27;
+  font-optical-sizing: auto;
+}
+
+html { min-width: 320px; scroll-behavior: smooth; }
+body { min-width: 320px; margin: 0; background: #f7f7f3; }
+button, input, textarea, select { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+img { max-width: 100%; }
+*:focus-visible { outline: 3px solid #8db8a8; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
