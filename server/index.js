@@ -6,6 +6,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { randomBytes } from 'node:crypto';
 import { Application, Media, Room, User } from './models.js';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -15,6 +17,23 @@ app.use(cors({ origin: (origin, callback) => {
   callback(null, !origin || allowedOrigins.includes(origin) || localDevOrigin);
 } }));
 app.use(express.json({ limit: '12mb' }));
+
+const __dirname = path.dirname(
+  fileURLToPath(import.meta.url)
+);
+
+// Serve the React frontend
+app.use(express.static(distPath));
+
+// Send the frontend for website routes
+app.get('/{*path}', (req, res, next) => {
+  if (req.path.startsWith('/api/')) {
+    return next();
+  }
+
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+const distPath = path.resolve(__dirname, '../dist');
 
 const safeUser = (user) => ({ id: user._id, name: user.name, email: user.email, role: user.role, phone: user.phone, accountStatus: user.accountStatus, warnings: user.warnings || [] });
 const auth = async (req, res, next) => {
